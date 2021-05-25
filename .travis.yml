@@ -4,18 +4,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t WTsotetzo/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t willyddn/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true WTsotetzo/react-test npm test
+  - docker run -e CI=true willyddn/react-test npm test
 
 after_success:
-  - docker build -t WTsotetzo/multi-client ./client
-  - docker build -t WTsotetzo/multi-nginx ./nginx
-  - docker build -t WTsotetzo/multi-server ./server
-  - docker build -t WTsotetzo/multi-worker ./worker
+  - docker build -t willyddn/multi-client ./client
+  - docker build -t willyddn/multi-nginx ./nginx
+  - docker build -t willyddn/multi-server ./server
+  - docker build -t willyddn/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push WTsotetzo/multi-client
-  - docker push WTsotetzo/multi-nginx
-  - docker push WTsotetzo/multi-server
-  - docker push WTsotetzo/multi-worker
+  - docker push willyddn/multi-client
+  - docker push willyddn/multi-nginx
+  - docker push willyddn/multi-server
+  - docker push willyddn/multi-worker
