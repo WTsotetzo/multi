@@ -1,0 +1,44 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "willyddn/multi-client",
+            "hostname": "client",
+            "essential": false
+        
+        },
+
+        {
+            "name": "worker",
+            "image": "willyddn/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        
+        },
+
+        {
+            "name": "nginx",
+            "image": "willyddn/multi-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort":80
+                }
+            ],
+            "links": ["client", "server"]
+        
+        },
+
+        {
+            "name": "server",
+            "image": "willyddn/multi-server",
+            "hostname": "api",
+            "essential": false
+        
+        }
+    ]
+
+}

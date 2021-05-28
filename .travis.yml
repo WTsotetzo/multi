@@ -19,3 +19,17 @@ after_success:
   - docker push willyddn/multi-nginx
   - docker push willyddn/multi-server
   - docker push willyddn/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-west-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-eu-west-3-390848313631
+  bucket_path: docker-multi
+  on:
+    branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: 
+      secure: "$AWS_SECRET_KEY"
+    
